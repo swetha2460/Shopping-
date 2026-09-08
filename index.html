@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopMate | Thoughtful things, delivered</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .shop-controls { display: flex; align-items: center; gap: 10px; }
+    .shop-search { width: 250px; height: 42px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: #fff; color: var(--ink); padding: 0 10px 0 13px; transition: border-color .2s, box-shadow .2s; }
+    .shop-search:focus-within { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(231,126,104,.12); }
+    .shop-search > span { color: var(--coral); font-size: 21px; line-height: 1; }
+    .shop-search input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }
+    .shop-search input::placeholder { color: #9aa09f; }
+    .shop-search kbd { border: 1px solid var(--line); color: #9aa09f; padding: 3px 5px; font: 10px "DM Sans", sans-serif; }
+    .sort-select { height: 42px; min-width: 150px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); padding: 0 12px; font-size: 11px; }
+    .icon-button[data-action="search"] { position: relative; transition: color .2s, transform .2s; }
+    .icon-button[data-action="search"]::after { content: ""; position: absolute; inset: 1px; border: 1px solid var(--coral); border-radius: 50%; opacity: 0; transform: scale(.55); transition: opacity .2s, transform .2s; }
+    .icon-button[data-action="search"]:hover { color: var(--coral); transform: scale(1.12) rotate(-8deg); }
+    .icon-button[data-action="search"]:hover::after { opacity: .35; transform: scale(1.15); }
+    .icon-button[data-action="search"].searching { animation: search-pulse .55s ease-out; color: var(--coral); }
+    @keyframes search-pulse { 0% { transform: scale(1); } 45% { transform: scale(1.28) rotate(-12deg); } 100% { transform: scale(1); } }
+    button, .primary-button, .light-button { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .heart { width: auto; min-width: 54px; padding: 0 8px; font-size: 11px; }
+    .send { width: 58px; min-width: 58px; padding: 0 8px; overflow: visible; text-overflow: clip; }
+    .product-art img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    @media (max-width: 800px) { .shop-controls { width: 100%; align-items: stretch; flex-direction: column; } .shop-search, .sort-select { width: 100%; } }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="announcement">Free delivery on orders over ₹2,000 <span>•</span> Easy 30-day returns</div>
+  <header class="site-header">
+    <a class="logo" href="#/home" aria-label="ShopMate home"><span>✦</span> shopmate</a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#/shop">Shop</a><a href="#/shop?category=Footwear">Categories</a><a href="#/stylist">AI Stylist</a><a href="#/orders">Track order</a><a href="#/wishlist">Wishlist</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" data-action="search" aria-label="Search">⌕</button>
+      <a class="icon-button account-link" href="#/orders" aria-label="Your account">♙</a>
+      <a class="cart-button" href="#/cart" aria-label="Shopping cart">Bag <span id="cartCount">0</span></a>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="site-footer">
+    <div><a class="logo footer-logo" href="#/home"><span>✦</span> shopmate</a><p>Thoughtful things for everyday living.</p></div>
+    <div class="footer-links"><div><strong>Explore</strong><a href="#/shop">All products</a><a href="#/stylist">AI Stylist</a></div><div><strong>Help</strong><a href="#/orders">Track an order</a><a href="#/stylist">Support chat</a></div><div><strong>ShopMate</strong><a href="#/home">Our story</a><a href="#/home">Journal</a></div></div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
